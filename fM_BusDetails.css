@@ -1,0 +1,6 @@
+.slds-form-element__label:empty{
+    display:none !important;
+}
+.slds-form-element__label{
+    display:none !important;
+}

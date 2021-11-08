@@ -1,0 +1,124 @@
+<template>
+    <template if:true={buses}>
+
+        <div class="slds-grid slds-wrap">
+            <div
+                class="slds-col slds-size_9-of-12 slds-small-size--9-of-12 slds-medium-size_9-of-12 slds-large-size_9-of-12">
+                <lightning-layout multiple-rows="true" class=" slds-p-bottom_large">
+                    <template for:each={buses} for:item="bus">
+
+
+                        <lightning-layout-item key={bus.Id} class="slds-p-around_medium" size="12"
+                            small-device-size="12" large-device-size="3" medium-device-size="3">
+                            <lightning-card key={bus.Id} title={bus.Name}>
+                                <img alt="Chat offline" style="height:150px" src={bus.Bus_Image__c}
+                                    onclick={handleClick} data-id={bus.Id}>
+                            </lightning-card>
+                        </lightning-layout-item>
+
+
+                    </template>
+                </lightning-layout>
+            </div>
+            <div
+                class="slds-col slds-size_3-of-12 slds-small-size--3-of-12 slds-medium-size_3-of-12 slds-large-size_3-of-12">
+                <template if:true={showDetails}>
+                    <div class="slds-p-top_medium">
+                        <lightning-card>
+                            <lightning-layout class="slds-p-left_large slds-p-bottom_small">
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6"> Year </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">: {year}</lightning-layout-item>
+                            </lightning-layout>
+                            <lightning-layout class="slds-p-left_large slds-p-bottom_small">
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">Maximum Capacity</lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">: {maxCapacity}</lightning-layout-item>
+                            </lightning-layout>
+                            <lightning-layout class="slds-p-left_large slds-p-bottom_small">
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">Odometer</lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">: {Odometer} </lightning-layout-item>
+                            </lightning-layout>
+
+                            <lightning-layout class="slds-p-top_small">
+                                <lightning-layout-item size="12" class="slds-align_absolute-center">
+                                    <div class="slds-p-right_xx-small">
+                                        <lightning-button variant="brand" label="Edit" onclick={handleEditClick}>
+                                        </lightning-button>
+                                    </div>
+                                    <div class="slds-p-left_xx-small">
+                                        <lightning-button variant="brand" label="Cancel" onclick={handleCancel}>
+                                        </lightning-button>
+                                    </div>
+                                </lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-card>
+                    </div>
+                    <div class="slds-p-top_medium">
+                        <lightning-card>
+                            <lightning-layout class="slds-p-left_large slds-p-bottom_small">
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6"> Resale Value </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">: {resaleValue}</lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-card>
+                    </div>
+                </template>
+                <template if:true={editDetails}>
+                    <div class="slds-p-top_medium">
+                        <lightning-card>
+                            <div class="slds-p-left_large slds-p-bottom_small slds-p-right_large">
+                                <lightning-record-edit-form record-id={selectedId} object-api-name={objectApiName}
+                                    onsuccess={handleSuccess}>
+                                    <lightning-messages>
+                                    </lightning-messages>
+                                    <lightning-input-field field-name="Year__c"
+                                        class="slds-p-left_large slds-p-bottom_small slds-p-right_large">
+                                    </lightning-input-field>
+                                    <lightning-input-field field-name="Maximum_Capacity__c"
+                                        class="slds-p-left_large slds-p-bottom_small slds-p-right_large">
+                                    </lightning-input-field>
+                                    <lightning-input-field field-name="OdometerReading__c"
+                                        class="slds-p-left_large slds-p-bottom_small slds-p-right_large">
+                                    </lightning-input-field>
+                                    <lightning-layout class="slds-p-top_small">
+                                        <lightning-layout-item size="12" class="slds-align_absolute-center">
+                                            <div class="slds-p-right_xx-small">
+                                                <lightning-button variant="brand" type="submit" name="update"
+                                                    label="Save">
+                                                </lightning-button>
+                                            </div>
+                                            <div class="slds-p-left_xx-small">
+                                                <lightning-button variant="brand" label="Cancel"
+                                                    onclick={handleSaveCancel}>
+                                                </lightning-button>
+                                            </div>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+
+                                </lightning-record-edit-form>
+                            </div>
+                        </lightning-card>
+                    </div>
+                    <div class="slds-p-top_medium">
+                        <lightning-card>
+                            <lightning-layout class="slds-p-left_large slds-p-bottom_small">
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6"> Resale Value </lightning-layout-item>
+                                <lightning-layout-item size="12" small-device-size="6" large-device-size="6"
+                                    medium-device-size="6">: {resaleValue}</lightning-layout-item>
+                            </lightning-layout>
+                        </lightning-card>
+                    </div>
+                </template>
+
+
+            </div>
+        </div>
+    </template>
+</template>
