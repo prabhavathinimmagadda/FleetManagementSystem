@@ -57,7 +57,7 @@ export default class FM_BusDetails extends LightningElement {
         console.log(this.year);
 
     }
-    handleYearChange(event){
+  /*  handleYearChange(event){
         this.year = event.detail.value;
     }
     handleCapacityChange(event){
@@ -65,7 +65,7 @@ export default class FM_BusDetails extends LightningElement {
     }
     handleOdometerChange(event){
         this.Odometer = event.detail.value;
-    }
+    } */
     handleSuccess(event){
       
         const payload = event.detail;
