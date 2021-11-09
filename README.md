@@ -74,4 +74,4 @@ Maintenance__c:
 * LWC compoent is created as a tab in the Fleet Management System app. If you click on the app, you will see all the buses displayed in grid format. 
 * I scheduled batch apex to run every night, at 10 PM. Below is the code that needs to be executed to scheldue a batch apex in Execute Anonymous Window.
 
-system.schedule('MaintenainceVisitScheduler '+today(), '0 0 22 * * ? *',new MainteinanceVisitScheduler());
+system.schedule('MaintenainceVisitScheduler', '0 0 22 * * ? *',new MainteinanceVisitScheduler());
