@@ -31,11 +31,11 @@ global class MainteinanceVisitBatch implements Database.Batchable<sObject>{
         Double dist=0;
         Double distance;
         Id gargare_id ;        
-        
+        List<Garage__c> garages = [Select Id, Name, Location__c from Garage__c];
         for(Bus__c bus_record: bus){
             system.debug('Bus Name : '+bus_record.Name);
             //calculate the distance between bus's location and garage's loction to assign the bus to the closest garage
-            for(Garage__c gar_record : [Select Id, Name, Location__c from Garage__c]){
+            for(Garage__c gar_record : garages){
                 if(gar_record.Location__c != null && bus_record.Last_Ping_Location__c != null){
                     distance = Location.getDistance(gar_record.Location__c, bus_record.Last_Ping_Location__c, 'mi');
                 }              
