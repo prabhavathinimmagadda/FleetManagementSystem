@@ -1,4 +1,4 @@
-public class BusTriggerHandler {
+public with sharing class BusTriggerHandler {
     public static void calculateResaleValue(Bus__c bus){
         system.debug('Bus: '+bus);
         // this condition is added ecause it should enter the block and check all condition only when the current status is set to 'Ready For Use'
